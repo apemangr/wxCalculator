@@ -1,26 +1,26 @@
 [
 {
-  "directory": "C:/Users/apemangr/Desktop/wxCalculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\main.cpp.obj -c C:\\Users\\apemangr\\Desktop\\wxCalculator\\main.cpp",
-  "file": "C:/Users/apemangr/Desktop/wxCalculator/main.cpp",
+  "directory": "C:/Users/apemangr/Desktop/Github/wxCalculator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\main.cpp.obj -c C:\\Users\\apemangr\\Desktop\\Github\\wxCalculator\\main.cpp",
+  "file": "C:/Users/apemangr/Desktop/Github/wxCalculator/main.cpp",
   "output": "CMakeFiles/Calculator.dir/main.cpp.obj"
 },
 {
-  "directory": "C:/Users/apemangr/Desktop/wxCalculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\panels.cpp.obj -c C:\\Users\\apemangr\\Desktop\\wxCalculator\\panels.cpp",
-  "file": "C:/Users/apemangr/Desktop/wxCalculator/panels.cpp",
+  "directory": "C:/Users/apemangr/Desktop/Github/wxCalculator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\panels.cpp.obj -c C:\\Users\\apemangr\\Desktop\\Github\\wxCalculator\\panels.cpp",
+  "file": "C:/Users/apemangr/Desktop/Github/wxCalculator/panels.cpp",
   "output": "CMakeFiles/Calculator.dir/panels.cpp.obj"
 },
 {
-  "directory": "C:/Users/apemangr/Desktop/wxCalculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\calculator.cpp.obj -c C:\\Users\\apemangr\\Desktop\\wxCalculator\\calculator.cpp",
-  "file": "C:/Users/apemangr/Desktop/wxCalculator/calculator.cpp",
+  "directory": "C:/Users/apemangr/Desktop/Github/wxCalculator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\calculator.cpp.obj -c C:\\Users\\apemangr\\Desktop\\Github\\wxCalculator\\calculator.cpp",
+  "file": "C:/Users/apemangr/Desktop/Github/wxCalculator/calculator.cpp",
   "output": "CMakeFiles/Calculator.dir/calculator.cpp.obj"
 },
 {
-  "directory": "C:/Users/apemangr/Desktop/wxCalculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\custom-button.cpp.obj -c C:\\Users\\apemangr\\Desktop\\wxCalculator\\custom-button.cpp",
-  "file": "C:/Users/apemangr/Desktop/wxCalculator/custom-button.cpp",
+  "directory": "C:/Users/apemangr/Desktop/Github/wxCalculator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMSW__ @CMakeFiles/Calculator.dir/includes_CXX.rsp -DwxUSE_DPI_AWARE_MANIFEST=2 -o CMakeFiles\\Calculator.dir\\custom-button.cpp.obj -c C:\\Users\\apemangr\\Desktop\\Github\\wxCalculator\\custom-button.cpp",
+  "file": "C:/Users/apemangr/Desktop/Github/wxCalculator/custom-button.cpp",
   "output": "CMakeFiles/Calculator.dir/custom-button.cpp.obj"
 }
 ]

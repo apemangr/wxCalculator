@@ -33,7 +33,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-3.30/Modules/Platform/Windows.cmake"
   "C:/Program Files/CMake/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake"
   "C:/Program Files/CMake/share/cmake-3.30/Modules/UsewxWidgets.cmake"
-  "C:/Users/apemangr/Desktop/wxCalculator/CMakeLists.txt"
+  "C:/Users/apemangr/Desktop/Github/wxCalculator/CMakeLists.txt"
   "CMakeFiles/3.30.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.30.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.30.1/CMakeRCCompiler.cmake"

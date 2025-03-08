@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/apemangr/Desktop/wxCalculator/wx.rc
+C:/Users/apemangr/Desktop/Github/wxCalculator/wx.rc
 windows.h
 -
 wx/msw/rcdefs.h
-C:/Users/apemangr/Desktop/wxCalculator/wx/msw/rcdefs.h
+C:/Users/apemangr/Desktop/Github/wxCalculator/wx/msw/rcdefs.h
 
 C:/msys64/mingw64/lib/wx/include/msw-unicode-3.2/wx/msw/rcdefs.h
 

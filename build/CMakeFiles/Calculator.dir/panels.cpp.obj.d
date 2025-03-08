@@ -1,7 +1,8 @@
 CMakeFiles/Calculator.dir/panels.cpp.obj: \
- C:\Users\apemangr\Desktop\wxCalculator\panels.cpp \
- C:/msys64/mingw64/include/wx-3.2/wx/gbsizer.h \
- C:/msys64/mingw64/include/wx-3.2/wx/sizer.h \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\panels.cpp \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\panels.h \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\custom-button.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/wx.h \
  C:/msys64/mingw64/include/wx-3.2/wx/defs.h \
  C:/msys64/mingw64/include/wx-3.2/wx/platform.h \
  C:/msys64/mingw64/include/wx-3.2/wx/compiler.h \
@@ -55,8 +56,6 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/ctype.h C:/msys64/mingw64/include/tchar.h \
  C:/msys64/mingw64/include/sec_api/tchar_s.h \
  C:/msys64/mingw64/include/wx-3.2/wx/features.h \
- C:/msys64/mingw64/include/wx-3.2/wx/window.h \
- C:/msys64/mingw64/include/wx-3.2/wx/event.h \
  C:/msys64/mingw64/include/wx-3.2/wx/object.h \
  C:/msys64/mingw64/include/wx-3.2/wx/memory.h \
  C:/msys64/mingw64/include/wx-3.2/wx/string.h \
@@ -180,30 +179,9 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/rtti.h \
  C:/msys64/mingw64/include/wx-3.2/wx/flags.h \
  C:/msys64/mingw64/include/wx-3.2/wx/xti2.h \
- C:/msys64/mingw64/include/wx-3.2/wx/clntdata.h \
- C:/msys64/mingw64/include/wx-3.2/wx/hashmap.h \
- C:/msys64/mingw64/include/wx-3.2/wx/wxcrt.h \
- C:/msys64/mingw64/include/wx-3.2/wx/math.h \
- C:/msys64/mingw64/include/c++/14.1.0/math.h \
- C:/msys64/mingw64/include/c++/14.1.0/cmath \
- C:/msys64/mingw64/include/math.h \
- C:/msys64/mingw64/include/c++/14.1.0/bits/specfun.h \
- C:/msys64/mingw64/include/c++/14.1.0/limits \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/gamma.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/special_function_util.h \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/bessel_function.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/beta_function.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/ell_integral.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/exp_integral.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/hypergeometric.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/legendre_function.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/modified_bessel_func.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/poly_hermite.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/poly_laguerre.tcc \
- C:/msys64/mingw64/include/c++/14.1.0/tr1/riemann_zeta.tcc \
- C:/msys64/mingw64/include/wx-3.2/wx/gdicmn.h \
- C:/msys64/mingw64/include/wx-3.2/wx/list.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/dynarray.h \
  C:/msys64/mingw64/include/wx-3.2/wx/vector.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/list.h \
  C:/msys64/mingw64/include/c++/14.1.0/iterator \
  C:/msys64/mingw64/include/c++/14.1.0/bits/stream_iterator.h \
  C:/msys64/mingw64/include/c++/14.1.0/bits/streambuf_iterator.h \
@@ -233,23 +211,55 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/c++/14.1.0/bits/stl_list.h \
  C:/msys64/mingw64/include/c++/14.1.0/bits/allocated_ptr.h \
  C:/msys64/mingw64/include/c++/14.1.0/bits/list.tcc \
+ C:/msys64/mingw64/include/wx-3.2/wx/hash.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/hashmap.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/wxcrt.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/arrstr.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/intl.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/localedefs.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/translation.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/language.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/scopedptr.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/checkeddelete.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/log.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/time.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/longlong.h \
+ C:/msys64/mingw64/include/c++/14.1.0/limits \
+ C:/msys64/mingw64/include/wx-3.2/wx/thread.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/generic/logg.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/event.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/clntdata.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/math.h \
+ C:/msys64/mingw64/include/c++/14.1.0/math.h \
+ C:/msys64/mingw64/include/c++/14.1.0/cmath \
+ C:/msys64/mingw64/include/math.h \
+ C:/msys64/mingw64/include/c++/14.1.0/bits/specfun.h \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/gamma.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/special_function_util.h \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/bessel_function.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/beta_function.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/ell_integral.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/exp_integral.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/hypergeometric.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/legendre_function.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/modified_bessel_func.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/poly_hermite.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/poly_laguerre.tcc \
+ C:/msys64/mingw64/include/c++/14.1.0/tr1/riemann_zeta.tcc \
+ C:/msys64/mingw64/include/wx-3.2/wx/gdicmn.h \
  C:/msys64/mingw64/include/wx-3.2/wx/cursor.h \
  C:/msys64/mingw64/include/wx-3.2/wx/gdiobj.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/gdiimage.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/cursor.h \
  C:/msys64/mingw64/include/wx-3.2/wx/utils.h \
  C:/msys64/mingw64/include/wx-3.2/wx/filefn.h \
- C:/msys64/mingw64/include/wx-3.2/wx/arrstr.h \
- C:/msys64/mingw64/include/wx-3.2/wx/dynarray.h \
  C:/msys64/mingw64/include/sys/stat.h C:/msys64/mingw64/include/fcntl.h \
  C:/msys64/mingw64/include/wx-3.2/wx/versioninfo.h \
  C:/msys64/mingw64/include/wx-3.2/wx/meta/implicitconversion.h \
  C:/msys64/mingw64/include/wx-3.2/wx/meta/if.h \
  C:/msys64/mingw64/include/wx-3.2/wx/mousestate.h \
  C:/msys64/mingw64/include/wx-3.2/wx/kbdstate.h \
- C:/msys64/mingw64/include/wx-3.2/wx/longlong.h \
  C:/msys64/mingw64/include/wx-3.2/wx/platinfo.h \
- C:/msys64/mingw64/include/wx-3.2/wx/thread.h \
  C:/msys64/mingw64/include/wx-3.2/wx/tracker.h \
  C:/msys64/mingw64/include/wx-3.2/wx/typeinfo.h \
  C:/msys64/mingw64/include/wx-3.2/wx/any.h \
@@ -258,44 +268,6 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/variant.h \
  C:/msys64/mingw64/include/wx-3.2/wx/meta/convertible.h \
  C:/msys64/mingw64/include/wx-3.2/wx/meta/removeref.h \
- C:/msys64/mingw64/include/wx-3.2/wx/font.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/font.h \
- C:/msys64/mingw64/include/wx-3.2/wx/colour.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/colour.h \
- C:/msys64/mingw64/include/wx-3.2/wx/region.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/region.h \
- C:/msys64/mingw64/include/wx-3.2/wx/intl.h \
- C:/msys64/mingw64/include/wx-3.2/wx/localedefs.h \
- C:/msys64/mingw64/include/wx-3.2/wx/translation.h \
- C:/msys64/mingw64/include/wx-3.2/wx/language.h \
- C:/msys64/mingw64/include/wx-3.2/wx/scopedptr.h \
- C:/msys64/mingw64/include/wx-3.2/wx/checkeddelete.h \
- C:/msys64/mingw64/include/wx-3.2/wx/validate.h \
- C:/msys64/mingw64/include/wx-3.2/wx/windowid.h \
- C:/msys64/mingw64/include/wx-3.2/wx/palette.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/palette.h \
- C:/msys64/mingw64/include/wx-3.2/wx/accel.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/accel.h \
- C:/msys64/mingw64/include/wx-3.2/wx/access.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/ole/access.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/window.h \
- C:/msys64/mingw64/include/wx-3.2/wx/settings.h \
- C:/msys64/mingw64/include/wx-3.2/wx/stattext.h \
- C:/msys64/mingw64/include/wx-3.2/wx/control.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/control.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/stattext.h \
- C:/msys64/mingw64/include/wx-3.2/wx/stdpaths.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/stdpaths.h \
- C:/msys64/mingw64/include/wx-3.2/wx/filename.h \
- C:/msys64/mingw64/include/wx-3.2/wx/file.h \
- C:/msys64/mingw64/include/wx-3.2/wx/convauto.h \
- C:\Users\apemangr\Desktop\wxCalculator\calculator.h \
- C:\Users\apemangr\Desktop\wxCalculator\panels.h \
- C:/msys64/mingw64/include/wx-3.2/wx/wx.h \
- C:/msys64/mingw64/include/wx-3.2/wx/hash.h \
- C:/msys64/mingw64/include/wx-3.2/wx/log.h \
- C:/msys64/mingw64/include/wx-3.2/wx/time.h \
- C:/msys64/mingw64/include/wx-3.2/wx/generic/logg.h \
  C:/msys64/mingw64/include/wx-3.2/wx/app.h \
  C:/msys64/mingw64/include/wx-3.2/wx/eventfilter.h \
  C:/msys64/mingw64/include/wx-3.2/wx/build.h \
@@ -523,6 +495,23 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/timer.h \
  C:/msys64/mingw64/include/wx-3.2/wx/module.h \
  C:/msys64/mingw64/include/wx-3.2/wx/wxcrtvararg.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/window.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/font.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/font.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/colour.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/colour.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/region.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/region.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/validate.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/windowid.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/palette.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/palette.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/accel.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/accel.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/access.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/ole/access.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/window.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/settings.h \
  C:/msys64/mingw64/include/wx-3.2/wx/containr.h \
  C:/msys64/mingw64/include/wx-3.2/wx/panel.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/panel.h \
@@ -535,6 +524,8 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/toplevel.h \
  C:/msys64/mingw64/include/wx-3.2/wx/frame.h \
  C:/msys64/mingw64/include/wx-3.2/wx/statusbr.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/control.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/control.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/statusbar.h \
  C:/msys64/mingw64/include/wx-3.2/wx/tooltip.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/tooltip.h \
@@ -603,6 +594,8 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/choice.h \
  C:/msys64/mingw64/include/wx-3.2/wx/scrolbar.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/scrolbar.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/stattext.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/stattext.h \
  C:/msys64/mingw64/include/wx-3.2/wx/statbmp.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/statbmp.h \
  C:/msys64/mingw64/include/wx-3.2/wx/statbox.h \
@@ -647,6 +640,7 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/combobox.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/combobox.h \
  C:/msys64/mingw64/include/wx-3.2/wx/layout.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/sizer.h \
  C:/msys64/mingw64/include/wx-3.2/wx/choicdlg.h \
  C:/msys64/mingw64/include/wx-3.2/wx/generic/choicdgg.h \
  C:/msys64/mingw64/include/wx-3.2/wx/textdlg.h \
@@ -656,5 +650,12 @@ CMakeFiles/Calculator.dir/panels.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/filedlg.h \
  C:/msys64/mingw64/include/wx-3.2/wx/mdi.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/mdi.h \
- C:\Users\apemangr\Desktop\wxCalculator\custom-button.h \
- C:/msys64/mingw64/include/wx-3.2/wx/wxprec.h
+ C:\Users\apemangr\Desktop\Github\wxCalculator\calculator.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/wxprec.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/filename.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/file.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/convauto.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/gbsizer.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/numformatter.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/stdpaths.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/stdpaths.h

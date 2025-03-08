@@ -1,7 +1,8 @@
 CMakeFiles/Calculator.dir/calculator.cpp.obj: \
- C:\Users\apemangr\Desktop\wxCalculator\calculator.cpp \
- C:\Users\apemangr\Desktop\wxCalculator\calculator.h \
- C:\Users\apemangr\Desktop\wxCalculator\panels.h \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\calculator.cpp \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\calculator.h \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\panels.h \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\custom-button.h \
  C:/msys64/mingw64/include/wx-3.2/wx/wx.h \
  C:/msys64/mingw64/include/wx-3.2/wx/defs.h \
  C:/msys64/mingw64/include/wx-3.2/wx/platform.h \
@@ -650,5 +651,4 @@ CMakeFiles/Calculator.dir/calculator.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/filedlg.h \
  C:/msys64/mingw64/include/wx-3.2/wx/mdi.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/mdi.h \
- C:\Users\apemangr\Desktop\wxCalculator\custom-button.h \
  C:/msys64/mingw64/include/wx-3.2/wx/wxprec.h

@@ -1,6 +1,6 @@
 CMakeFiles/Calculator.dir/custom-button.cpp.obj: \
- C:\Users\apemangr\Desktop\wxCalculator\custom-button.cpp \
- C:\Users\apemangr\Desktop\wxCalculator\custom-button.h \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\custom-button.cpp \
+ C:\Users\apemangr\Desktop\Github\wxCalculator\custom-button.h \
  C:/msys64/mingw64/include/wx-3.2/wx/wx.h \
  C:/msys64/mingw64/include/wx-3.2/wx/defs.h \
  C:/msys64/mingw64/include/wx-3.2/wx/platform.h \
@@ -649,9 +649,9 @@ CMakeFiles/Calculator.dir/custom-button.cpp.obj: \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/filedlg.h \
  C:/msys64/mingw64/include/wx-3.2/wx/mdi.h \
  C:/msys64/mingw64/include/wx-3.2/wx/msw/mdi.h \
- C:/msys64/mingw64/include/wx-3.2/wx/stdpaths.h \
- C:/msys64/mingw64/include/wx-3.2/wx/msw/stdpaths.h \
  C:/msys64/mingw64/include/wx-3.2/wx/filename.h \
  C:/msys64/mingw64/include/wx-3.2/wx/file.h \
  C:/msys64/mingw64/include/wx-3.2/wx/convauto.h \
- C:/msys64/mingw64/include/wx-3.2/wx/fontenum.h
+ C:/msys64/mingw64/include/wx-3.2/wx/fontenum.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/stdpaths.h \
+ C:/msys64/mingw64/include/wx-3.2/wx/msw/stdpaths.h

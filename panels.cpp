@@ -163,7 +163,7 @@ BotPanel::BotPanel(wxPanel* parent)
     entries[8].Set(wxACCEL_NORMAL, WXK_NUMPAD8, ID_8);
     entries[9].Set(wxACCEL_NORMAL, WXK_NUMPAD9, ID_9);
     entries[10].Set(wxACCEL_NORMAL, WXK_NUMPAD_ADD, ID_PLUS);
-    entries[11].Set(wxACCEL_NORMAL, WXK_NUMPAD_DECIMAL, ID_DOT);
+    entries[11].Set(wxACCEL_NORMAL, VK_OEM_PERIOD, ID_DOT);
 
     wxAcceleratorTable accel(11, entries);
 

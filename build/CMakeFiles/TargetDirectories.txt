@@ -1,3 +1,0 @@
-C:/Users/apemangr/Desktop/Github/wxCalculator/build/CMakeFiles/Calculator.dir
-C:/Users/apemangr/Desktop/Github/wxCalculator/build/CMakeFiles/edit_cache.dir
-C:/Users/apemangr/Desktop/Github/wxCalculator/build/CMakeFiles/rebuild_cache.dir

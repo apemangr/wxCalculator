@@ -36,13 +36,15 @@ public:
     void OnNumpad8(wxCommandEvent& event);
     void OnNumpad9(wxCommandEvent& event);
     void OnDot(wxCommandEvent& event);
-    void OnPlus(wxCommandEvent& event);
 
+    void OnPlus(wxCommandEvent& event);
+    void OnDelete(wxCommandEvent& event);
+    void OnDiv(wxCommandEvent& event);
     void OnMinus(wxCommandEvent& event);
     void OnMul(wxCommandEvent& event);
 
-    CustomButton* m_ac;
-    CustomButton* m_pm;
+    CustomButton* m_ac; // Clear
+    CustomButton* m_pm; // Plus/Minus
     CustomButton* m_percent;
     CustomButton* m_div;
     CustomButton* m_7;
@@ -58,7 +60,7 @@ public:
     CustomButton* m_3;
     CustomButton* m_plus;
     CustomButton* m_0;
-    CustomButton* m_point;
+    CustomButton* m_point; // Decimal
     CustomButton* m_equals;
 
     wxPanel* m_parent;
@@ -77,7 +79,9 @@ enum
     ID_8,
     ID_9,
     ID_PLUS,
+    ID_DIV,
     ID_MINUS,
     ID_MUL,
-    ID_DOT
+    ID_DOT,
+    ID_DELETE
 };

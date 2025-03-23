@@ -13,4 +13,5 @@ public:
 
     wxPanel* m_parent;
     wxPanel* m_top_parent;
+    bool copiedToPrevPanel;
 };

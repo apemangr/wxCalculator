@@ -15,8 +15,8 @@ set(SRC_FILES
     calculator.cpp
     custom-button.h
     custom-button.cpp
-    wx.rc
     assets/SFPRODISPLAYMEDIUM.otf
+    wx.rc
 )
 
 

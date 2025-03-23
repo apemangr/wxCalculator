@@ -3,6 +3,7 @@
 Calculator::Calculator(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(300, 400))
 {
+    copiedToPrevPanel = false;
     this->SetMinSize(wxSize(300, 400));
 
     m_parent = new wxPanel(this, wxID_ANY);

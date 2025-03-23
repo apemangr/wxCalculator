@@ -34,7 +34,7 @@ END
 
 
 // wx.rc
-SFPRODISPLAYBOLD_OTF FONT "./assets/SFPRODISPLAYBOLD.otf"
+//SFPRODISPLAYMEDIUM_FONT "/assets/SFPRODISPLAYMEDIUM.otf"
 
 //////////////////////////////////////////////////////////////////////////////
 //

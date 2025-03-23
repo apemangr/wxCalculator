@@ -12,7 +12,7 @@ PrevPanel::PrevPanel(wxPanel* parent)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(258, 30), wxBORDER_NONE)
 {
     m_text = new wxTextCtrl(
-        this, -1, "0", wxDefaultPosition, wxDefaultSize, wxTE_READONLY | wxTE_RIGHT | wxNO_BORDER);
+        this, -1, "", wxDefaultPosition, wxDefaultSize, wxTE_READONLY | wxTE_RIGHT | wxNO_BORDER);
     m_text->SetBackgroundColour(wxColor(68, 70, 72));
     m_text->SetForegroundColour(*wxWHITE);
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
@@ -24,16 +24,20 @@ TopPanel::TopPanel(wxPanel* parent)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(258, 50), wxBORDER_NONE)
 {
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-    m_text = new wxTextCtrl(
-        this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_RIGHT | wxNO_BORDER);
+    m_text = new wxTextCtrl(this,
+                            wxID_ANY,
+                            "",
+                            wxDefaultPosition,
+                            wxDefaultSize,
+                            wxTE_RIGHT | wxTE_READONLY | wxNO_BORDER);
 
     // Crear un validador personalizado
     wxTextValidator validator(wxFILTER_DIGITS);
     validator.AddCharIncludes('+');
     validator.AddCharIncludes('.');
-    // validator.AddCharIncludes('-');
-    // validator.AddCharIncludes('*');
-    // validator.AddCharIncludes('/');
+    validator.AddCharIncludes('-');
+    validator.AddCharIncludes('*');
+    validator.AddCharIncludes('/');
     //
     // Establecer el validador en el control de texto
     m_text->SetValidator(validator);
@@ -151,7 +155,7 @@ BotPanel::BotPanel(wxPanel* parent)
 
     // m_minus->Bind(wxEVT_BUTTON, &BotPanel::OnMinus, this);
     // m_mul->Bind(wxEVT_BUTTON, &BotPanel::OnMul, this);
-    wxAcceleratorEntry entries[11];
+    wxAcceleratorEntry entries[14];
     entries[0].Set(wxACCEL_NORMAL, WXK_NUMPAD0, ID_0);
     entries[1].Set(wxACCEL_NORMAL, WXK_NUMPAD1, ID_1);
     entries[2].Set(wxACCEL_NORMAL, WXK_NUMPAD2, ID_2);
@@ -164,8 +168,10 @@ BotPanel::BotPanel(wxPanel* parent)
     entries[9].Set(wxACCEL_NORMAL, WXK_NUMPAD9, ID_9);
     entries[10].Set(wxACCEL_NORMAL, WXK_NUMPAD_ADD, ID_PLUS);
     entries[11].Set(wxACCEL_NORMAL, WXK_NUMPAD_DECIMAL, ID_DOT);
+    entries[12].Set(wxACCEL_NORMAL, WXK_BACK, ID_DELETE);
+    entries[13].Set(wxACCEL_NORMAL, WXK_NUMPAD_DIVIDE, ID_DIV);
 
-    wxAcceleratorTable accel(12, entries);
+    wxAcceleratorTable accel(14, entries);
 
     // Asignar el objeto wxAcceleratorTable a la ventana
     SetAcceleratorTable(accel);
@@ -182,133 +188,428 @@ BotPanel::BotPanel(wxPanel* parent)
     Bind(wxEVT_MENU, &BotPanel::OnNumpad9, this, ID_9);
     Bind(wxEVT_MENU, &BotPanel::OnPlus, this, ID_PLUS);
     Bind(wxEVT_MENU, &BotPanel::OnDot, this, ID_DOT);
+    Bind(wxEVT_MENU, &BotPanel::OnDelete, this, ID_DELETE);
+    Bind(wxEVT_MENU, &BotPanel::OnDiv, this, ID_DIV);
 }
 
 void BotPanel::OnNumpad0(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
-    wxString valorActual = comm->m_tp->m_text->GetValue();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
+    wxString valor = comm->m_tp->m_text->GetValue();
 
-    // 1. Eliminar separadores de miles y decimales temporales
+    // Caso 1: Si el último valor en textPrevPanel es un operador, asignamos "0" al campo de texto
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "0"; // Asignar "0" al valor
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
+    // Caso 2: Si no hay operador y solo estamos agregando el número "0"
+    // Eliminar separadores de miles y decimales temporales
     wxChar thousandsSep, decimalSep;
     bool hasThousandsSep = wxNumberFormatter::GetThousandsSeparatorIfUsed(&thousandsSep);
     decimalSep = wxNumberFormatter::GetDecimalSeparator();
 
     if (hasThousandsSep)
     {
-        valorActual.Replace(wxString(thousandsSep), ""); // Eliminar puntos (ej: "1.000" → "1000")
+        valor.Replace(wxString(thousandsSep), ""); // Eliminar puntos (ej: "1.000" → "1000")
     }
 
-    // 2. Agregar el dígito "0" al número actual
-    valorActual += "0";
+    // Agregar el dígito "0" al número actual
+    valor += "0";
 
-    // 3. Convertir a double (maneja comas decimales)
+    // Convertir a double (maneja comas decimales)
     double numero;
-    if (!wxNumberFormatter::FromString(valorActual, &numero))
+    if (!wxNumberFormatter::FromString(valor, &numero))
     {
         numero = 0.0; // Si hay error, reiniciar a 0
     }
 
-    // 4. Formatear el número con separadores
+    // Formatear el número con separadores de miles y decimales
     wxString valorFormateado;
 
     // Determinar si el número tiene decimales
-    int posDecimal = valorActual.Find(decimalSep);
-    int decimales = (posDecimal != wxNOT_FOUND) ? (valorActual.length() - posDecimal - 1) : 0;
+    int posDecimal = valor.Find(decimalSep);
+    int decimales = (posDecimal != wxNOT_FOUND) ? (valor.length() - posDecimal - 1) : 0;
 
     // Formatear con separadores de miles y decimales
     valorFormateado = wxNumberFormatter::ToString(numero, decimales);
 
+    // Actualizar el campo de texto con el valor formateado
     comm->m_tp->m_text->SetValue(valorFormateado);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad1(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "1";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "1";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad2(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "2";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "2";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad3(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "3";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "3";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad4(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "4";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "4";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad5(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "5";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "5";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad6(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "6";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "6";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad7(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "7";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "7";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad8(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "8";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "8";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnNumpad9(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "9";
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
     valor += "9";
     comm->m_tp->m_text->SetValue(valor);
+    comm->copiedToPrevPanel = false;
 }
 
 void BotPanel::OnDot(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString textPrevPanel = comm->m_pp->m_text->GetLabel();
     wxString valor = comm->m_tp->m_text->GetValue();
-    valor += ".";
-    comm->m_tp->m_text->SetValue(valor);
+
+    // Caso 1: Si el último valor en textPrevPanel es un operador, asignamos el punto
+    if (!textPrevPanel.IsEmpty() && comm->copiedToPrevPanel)
+    {
+        wxChar lastChar = textPrevPanel.Last(); // Obtener el último carácter
+
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/')
+        {
+            valor = "0."; // Asignar "0." si hay un operador
+            comm->m_tp->m_text->SetValue(valor);
+            comm->copiedToPrevPanel = false;
+        }
+        return;
+    }
+
+    // Caso 2: Si no hay operador y estamos agregando el punto
+    // Eliminar separadores de miles y decimales temporales
+    wxChar thousandsSep, decimalSep;
+    bool hasThousandsSep = wxNumberFormatter::GetThousandsSeparatorIfUsed(&thousandsSep);
+    decimalSep = wxNumberFormatter::GetDecimalSeparator();
+
+    if (hasThousandsSep)
+    {
+        valor.Replace(wxString(thousandsSep),
+                      ""); // Eliminar separadores de miles (ej: "1.000" → "1000")
+    }
+
+    // Verificar si ya existe el separador decimal
+    if (!valor.Contains(decimalSep))
+    {
+        valor += decimalSep;
+        comm->m_tp->m_text->SetValue(valor);
+    }
+    else
+    {
+        // Si ya tiene un punto decimal, no hacer nada o manejar el caso si es necesario
+        return;
+    }
+
+    // Caso 3: Formatear el número después de agregar el punto (si es necesario)
+    double numero;
+    if (!wxNumberFormatter::FromString(valor, &numero))
+    {
+        numero = 0.0; // Si hay error, reiniciar a 0
+    }
+
+    // Formatear el número con separadores de miles y decimales
+    wxString valorFormateado;
+
+    // Determinar si el número tiene decimales
+    int posDecimal = valor.Find(decimalSep);
+    int decimales = (posDecimal != wxNOT_FOUND) ? (valor.length() - posDecimal - 1) : 0;
+
+    // Formatear con separadores de miles y decimales
+    valorFormateado = wxNumberFormatter::ToString(numero, decimales);
+
+    // Actualizar el campo de texto con el valor formateado
+    comm->m_tp->m_text->SetValue(valorFormateado);
+    comm->copiedToPrevPanel = false;
 }
 
-void BotPanel::OnPlus(wxCommandEvent& event)
+void BotPanel::OnDelete(wxCommandEvent& event)
 {
     Calculator* comm = (Calculator*) m_parent->GetParent();
     wxString prevText = comm->m_tp->m_text->GetValue();
-    prevText += " + ";
+    if (!prevText.IsEmpty())
+    {
+        prevText.RemoveLast();
+    }
+    comm->m_tp->m_text->SetLabel(prevText);
+}
+
+void BotPanel::OnDiv(wxCommandEvent& event)
+{
+    Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString prevText = comm->m_tp->m_text->GetValue();
+    prevText += " / ";
     comm->m_pp->m_text->SetLabel(prevText);
     comm->m_tp->m_text->SetLabel(wxString(""));
+}
+/*
+    Si el TopPanel tiene algun numero le concatena " +", y copia
+    lo mismo al PrevPanel,
+*/
+void BotPanel::OnPlus(wxCommandEvent& event)
+{
+    Calculator* comm = (Calculator*) m_parent->GetParent();
+    wxString topPanelText = comm->m_tp->m_text->GetValue();
+    wxString prevPanelText = comm->m_pp->m_text->GetValue();
+
+    // wxMessageBox(wxString::Format("El valor del copiado es: %s ",
+    //                               comm->copiedToPrevPanel ? "true" : "false"));
+
+    // Update the prev panel with the numbers and plus sign
+    if (!topPanelText.IsEmpty() && prevPanelText.IsEmpty() && !comm->copiedToPrevPanel)
+    {
+        topPanelText += " +";
+        comm->m_pp->m_text->SetLabel(topPanelText);
+        comm->copiedToPrevPanel = true;
+        return;
+    }
+
+    if (!topPanelText.IsEmpty() && !prevPanelText.IsEmpty() && !comm->copiedToPrevPanel)
+    {
+        double sumandoPrev, sumandoTop;
+        prevPanelText.ToDouble(&sumandoPrev);
+        topPanelText.ToDouble(&sumandoTop);
+        comm->m_pp->m_text->SetLabel(wxString::Format("%g +", sumandoPrev + sumandoTop));
+        comm->copiedToPrevPanel = true;
+        comm->m_tp->m_text->SetLabel(wxString::Format("%g", sumandoPrev + sumandoTop));
+        return;
+    }
+
+    // comm->m_tp->m_text->SetLabel(wxString(""));
 }
 
 void BotPanel::OnMinus(wxCommandEvent& event)
